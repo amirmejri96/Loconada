@@ -74,8 +74,8 @@
 }
  
 @media (max-width: 480px) {
-    .logo {
-        font-size: 2em;
+    .logo h1 {
+        font-size: 1.5em;
     }
  
     .tagline {

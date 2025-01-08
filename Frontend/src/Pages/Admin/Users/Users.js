@@ -5,7 +5,7 @@ import './UsersStyle.css'; // Assurez-vous que le CSS est dans ce fichier
 const UserList = () => {
   const [users, setUsers] = useState([]); // État pour les utilisateurs récupérés
   const [userModalVisible, setUserModalVisible] = useState(false); // Affichage de la modal
-  const [selectedUser, setSelectedUser] = useState(null); // Utilisateur sélectionné
+  const [selectedUser] = useState(null); // Utilisateur sélectionné
 
   // Récupérer les utilisateurs du backend
   useEffect(() => {
@@ -19,13 +19,7 @@ const UserList = () => {
         console.error("Il y a eu une erreur lors de la récupération des utilisateurs :", error);
       });
   }, []); // Le tableau vide signifie que l'effet s'exécute une seule fois au montage
-
-  // Afficher les détails d'un utilisateur
-  const viewUser = (index) => {
-    setSelectedUser(users[index]);
-    setUserModalVisible(true);
-  };
-
+  
   // Supprimer un utilisateur
   const deleteUser = (index) => {
     axios.delete(`http://localhost:5000/user/${users[index]._id}`)
@@ -68,7 +62,6 @@ const UserList = () => {
                 <td>{user.age}</td>
                 <td>{user.email}</td>
                 <td>
-                  <button className="view" onClick={() => viewUser(index)}>👁️</button>
                   <button className="delete" onClick={() => deleteUser(index)}>🗑️</button>
                 </td>
               </tr>
